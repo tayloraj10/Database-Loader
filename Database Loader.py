@@ -19,7 +19,7 @@ def delete_csv_and_csv_layers():
     for l in arcpy.mapping.ListLayers(arcpy.mapping.MapDocument("CURRENT")):
         if l.name[-4:] == '.csv':
             arcpy.Delete_management(l)
-            
+
             
 def print_errors():
     ''' prints out folders without a database copy and files with names that don't meet convention '''
@@ -36,11 +36,21 @@ def print_errors():
         print("Database Copy files with improper filename:")
         for item in filename_error:
             print(item)
+        print('\n')
         error = True
         
     if not error:
         print('All Good - No empty database folders or filename errors')
-            
+        print('\n')
+        
+def print_changed():
+    ''' prints out any files that were modified by the add_columns function '''
+    if len(changed_files) > 0:
+        print("Files that were modified")
+        for item in changed_files:
+            print(item)
+        print('\n')
+        
             
 def add_columns(csv, filename):
     ''' adds Geography and Date fields to CSVs that do not already have them '''
@@ -86,6 +96,7 @@ for root, dirs, files in os.walk(r"Z:\(G) Geographic Information Systems\GIS SUP
 
 
 print_errors()
+print_changed()
 
 # put these csvs in "For Store Database" folder
 for file in files_for_db:
