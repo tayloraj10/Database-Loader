@@ -98,6 +98,8 @@ for root, dirs, files in os.walk(r"Z:\(G) Geographic Information Systems\GIS SUP
 print_errors()
 print_changed()
 
+
+## Everything below is run by ArcMap
 # put these csvs in "For Store Database" folder
 for file in files_for_db:
     shutil.copy(file, r"Z:\(G) Geographic Information Systems\GIS SUPPORT\000 - Store Locations\For Store Database")
